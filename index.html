@@ -7,15 +7,27 @@
   <title>WE DON'T DO BROKE — Mnandi Palesa</title>
   <meta name="description"
     content="Luxury talk, late-night energy, no apologies. A soundtrack for ambition, temptation, and expensive taste.">
-  <meta property="og:image" content="https://mnandi-palesa.netlify.app/cover.jpg">
-  <meta name="twitter:image" content="https://mnandi-palesa.netlify.app/cover.jpg">
-  <meta property="og:title" content="WE DON'T DO BROKE — Mnandi Palesa">
-  <meta property="og:description" content="Luxury talk, late-night energy...">
 
-  <!-- Favicon: Gold "M" on dark background -->
+  <!-- Open Graph — WhatsApp / Social preview -->
+  <meta property="og:type" content="music.album">
+  <meta property="og:site_name" content="Mnandi Palesa">
+  <meta property="og:title" content="WE DON'T DO BROKE — Mnandi Palesa">
+  <meta property="og:description"
+    content="Luxury talk, late-night energy, no apologies. A soundtrack for ambition, temptation, and expensive taste.">
+  <meta property="og:url" content="https://mnandi-palesa.netlify.app">
+  <meta property="og:image" content="https://mnandi-palesa.netlify.app/cover.jpg">
+  <meta property="og:image:width" content="680">
+  <meta property="og:image:height" content="680">
+  <meta property="og:image:alt" content="WE DON'T DO BROKE — Album cover by Mnandi Palesa">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="WE DON'T DO BROKE — Mnandi Palesa">
+  <meta name="twitter:description"
+    content="Luxury talk, late-night energy, no apologies. A soundtrack for ambition, temptation, and expensive taste.">
+  <meta name="twitter:image" content="https://mnandi-palesa.netlify.app/cover.jpg">
+
+  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23090909'/%3E%3Ctext x='50' y='70' font-family='Georgia,serif' font-size='55' font-weight='bold' fill='%23C8A15A' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
-  <!-- Apple touch icon for iOS home screen -->
   <link rel="apple-touch-icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23090909'/%3E%3Ctext x='50' y='70' font-family='Georgia,serif' font-size='55' font-weight='bold' fill='%23C8A15A' text-anchor='middle'%3EM%3C/text%3E%3C/svg%3E">
 
@@ -159,7 +171,7 @@
       display: block;
       width: 100%;
       height: 100%;
-      cursor: pointer;
+      cursor: pointer
     }
 
     .hero-cover {
@@ -175,14 +187,40 @@
       box-shadow: 0 16px 48px rgba(0, 0, 0, 0.6), 0 0 60px var(--glow);
     }
 
-    .hero-artist {
+    /* ═══ Share button — replaces "Mnandi Palesa" text ═══ */
+    .hero-share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: 0px solid var(--border);
+      color: var(--muted-gold);
       font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 500;
-      letter-spacing: 0.25em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--gold);
+      padding: 8px 18px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all .25s ease;
+      touch-action: manipulation;
       margin-bottom: 12px;
+    }
+
+    .hero-share-btn:hover {
+      color: var(--gold);
+      border-color: var(--border-strong);
+      background: var(--glow)
+    }
+
+    .hero-share-btn:active {
+      transform: scale(0.97);
+      background: rgba(200, 161, 90, 0.08)
+    }
+
+    .hero-share-btn iconify-icon {
+      font-size: 14px
     }
 
     .hero-title {
@@ -286,6 +324,32 @@
       color: var(--muted-gold);
       letter-spacing: 0.02em;
       opacity: .7
+    }
+
+    /* ═══ Share toast ═══ */
+    .share-toast {
+      position: fixed;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--surface);
+      border: 1px solid var(--border-strong);
+      color: var(--ivory);
+      font-family: 'Inter', sans-serif;
+      font-size: 13px;
+      padding: 12px 24px;
+      border-radius: 8px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+      opacity: 0;
+      transition: all .3s ease;
+      pointer-events: none;
+      z-index: 100;
+      white-space: nowrap;
+    }
+
+    .share-toast.visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0)
     }
 
     /* ═══════════ SECTIONS ═══════════ */
@@ -660,7 +724,7 @@
       min-width: 22px
     }
 
-    /* ═══════════ CAPTURE SECTION ═══════════ */
+    /* ═══════════ CAPTURE ═══════════ */
     .capture-section {
       position: relative
     }
@@ -865,13 +929,47 @@
     .final-cta-body {
       font-size: 14px;
       color: var(--muted-gold);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       line-height: 1.6
     }
 
     .final-cta .btn-primary {
       max-width: 340px;
       margin: 0 auto
+    }
+
+    .final-share-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted-gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all .25s ease;
+      touch-action: manipulation;
+      margin-top: 20px;
+    }
+
+    .final-share-btn:hover {
+      color: var(--gold);
+      border-color: var(--border-strong);
+      background: var(--glow)
+    }
+
+    .final-share-btn:active {
+      transform: scale(0.97)
+    }
+
+    .final-share-btn iconify-icon {
+      font-size: 16px
     }
 
     /* ═══════════ FOOTER ═══════════ */
@@ -947,7 +1045,6 @@
       border-radius: 2px
     }
 
-    /* ═══════════ DESKTOP ═══════════ */
     @media(min-width:768px) {
       .page-wrapper {
         max-width: 520px;
@@ -995,20 +1092,21 @@
 
   <div class="page-wrapper">
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- HERO                                   -->
-    <!-- Anchor: #hero                          -->
-    <!-- Ad URL: yoursite.com/#hero             -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- ═══ HERO ═══ -->
     <section class="hero fade-in" id="hero">
       <div class="hero-cover-wrap">
-        <!-- Tapping the cover scrolls to "Choose your platform" -->
         <a href="#platforms" class="hero-cover-link">
           <img src="cover.jpg" alt="WE DON'T DO BROKE — Album cover by Mnandi Palesa" class="hero-cover"
             loading="eager">
         </a>
       </div>
-      <p class="hero-artist">Mnandi Palesa</p>
+
+      <!-- Was "Mnandi Palesa" — now the share button -->
+      <button class="hero-share-btn" id="hero-share-btn">
+        <iconify-icon icon="solar:share-linear" width="14"></iconify-icon>
+        Share This
+      </button>
+
       <h1 class="hero-title">WE DON'T DO BROKE</h1>
       <p class="hero-subtitle">Luxury talk, late-night energy, no apologies.</p>
       <p class="hero-support">A soundtrack for ambition, temptation, and expensive taste.</p>
@@ -1028,11 +1126,7 @@
     </section>
 
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- TRACKS                                 -->
-    <!-- Anchor: #tracks                        -->
-    <!-- Ad URL: yoursite.com/#tracks           -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- ═══ TRACKS ═══ -->
     <section class="section fade-in" id="tracks">
       <p class="section-label">Preview</p>
       <h2 class="section-title">Hear the energy first.</h2>
@@ -1040,13 +1134,7 @@
 
       <div class="track-cards">
 
-        <!-- ── Track 1: Pleasure Is Policy ── -->
-        <!-- Anchor: #track-pleasure -->
-        <!-- Ad URL: yoursite.com/#track-pleasure -->
-        <!--
-        FILE MUST BE NAMED EXACTLY: Pleasure_Is_Policy_30sec.mp3
-        Case-sensitive. No spaces. Underscores only.
-      -->
+        <!-- Track 1: Pleasure Is Policy — #track-pleasure -->
         <div class="track-card" id="track-pleasure" data-track="pleasure">
           <audio class="card-audio" preload="metadata">
             <source src="Pleasure_Is_Policy_30sec.mp3" type="audio/mpeg">
@@ -1062,39 +1150,23 @@
           <div class="card-player-bar">
             <div class="card-player-bar-fill"></div>
           </div>
-          <div class="card-player-times">
-            <span class="time-current">0:00</span>
-            <span class="time-total">0:30</span>
+          <div class="card-player-times"><span class="time-current">0:00</span><span class="time-total">0:30</span>
           </div>
           <p class="track-card-desc">For the listener who likes standards, bass, and soft-life authority.</p>
           <p class="track-preview-line">"No emotions without security."</p>
-          <div class="track-tags">
-            <span class="track-tag">Luxury</span>
-            <span class="track-tag">Control</span>
-            <span class="track-tag">Late-night</span>
-            <span class="track-tag">Replay</span>
-          </div>
+          <div class="track-tags"><span class="track-tag">Luxury</span><span class="track-tag">Control</span><span
+              class="track-tag">Late-night</span><span class="track-tag">Replay</span></div>
           <div class="track-card-buttons">
             <a href="https://open.spotify.com/track/1qNDshZm09gsFx0ucBehNT?si=6da2167fc5e845c5" target="_blank"
-              rel="noopener" class="btn-track-primary">
-              <iconify-icon icon="solar:play-bold" width="14"></iconify-icon>
-              Hear This Track
-            </a>
+              rel="noopener" class="btn-track-primary"><iconify-icon icon="solar:play-bold" width="14"></iconify-icon>
+              Hear This Track</a>
             <a href="https://music.apple.com/us/song/pleasure-is-policy/1886988112" target="_blank" rel="noopener"
-              class="btn-track-secondary">
-              <iconify-icon icon="solar:music-note-2-linear" width="14"></iconify-icon>
-              Apple Music
-            </a>
+              class="btn-track-secondary"><iconify-icon icon="solar:music-note-2-linear" width="14"></iconify-icon>
+              Apple Music</a>
           </div>
         </div>
 
-        <!-- ── Track 2: Feelin' Bitchy [304 Mix] ── -->
-        <!-- Anchor: #track-feelin -->
-        <!-- Ad URL: yoursite.com/#track-feelin -->
-        <!--
-        FILE MUST BE NAMED EXACTLY: Feelin_Bitchy_30sec.mp3
-        Case-sensitive. No spaces. Underscores only.
-      -->
+        <!-- Track 2: Feelin' Bitchy — #track-feelin -->
         <div class="track-card" id="track-feelin" data-track="feelin">
           <audio class="card-audio" preload="metadata">
             <source src="Feelin_Bitchy_30sec.mp3" type="audio/mpeg">
@@ -1111,39 +1183,23 @@
           <div class="card-player-bar">
             <div class="card-player-bar-fill"></div>
           </div>
-          <div class="card-player-times">
-            <span class="time-current">0:00</span>
-            <span class="time-total">0:30</span>
+          <div class="card-player-times"><span class="time-current">0:00</span><span class="time-total">0:30</span>
           </div>
           <p class="track-card-desc">For champagne moods, side-eye energy, and rich-girl attitude.</p>
           <p class="track-preview-line">"My energy rich, your vibe is cheap."</p>
-          <div class="track-tags">
-            <span class="track-tag">Sassy</span>
-            <span class="track-tag">Sharp</span>
-            <span class="track-tag">Club-ready</span>
-            <span class="track-tag">Feminine Power</span>
-          </div>
+          <div class="track-tags"><span class="track-tag">Sassy</span><span class="track-tag">Sharp</span><span
+              class="track-tag">Club-ready</span><span class="track-tag">Feminine Power</span></div>
           <div class="track-card-buttons">
             <a href="https://open.spotify.com/track/4rCHiR3hKFuP28CjrYpn9n?si=9b15430628504da1" target="_blank"
-              rel="noopener" class="btn-track-primary">
-              <iconify-icon icon="solar:play-bold" width="14"></iconify-icon>
-              Play This One
-            </a>
+              rel="noopener" class="btn-track-primary"><iconify-icon icon="solar:play-bold" width="14"></iconify-icon>
+              Play This One</a>
             <a href="https://music.apple.com/us/song/feelin-bitchy/1886988108" target="_blank" rel="noopener"
-              class="btn-track-secondary">
-              <iconify-icon icon="solar:music-note-2-linear" width="14"></iconify-icon>
-              Apple Music
-            </a>
+              class="btn-track-secondary"><iconify-icon icon="solar:music-note-2-linear" width="14"></iconify-icon>
+              Apple Music</a>
           </div>
         </div>
 
-        <!-- ── Track 3: iBhunga, Yebo, After-After Party ── -->
-        <!-- Anchor: #track-ibhunga -->
-        <!-- Ad URL: yoursite.com/#track-ibhunga -->
-        <!--
-        FILE MUST BE NAMED EXACTLY: iBhunga_yebo_after-after_party_30sec.mp3
-        Case-sensitive. Hyphens in "after-after". Underscores elsewhere.
-      -->
+        <!-- Track 3: iBhunga — #track-ibhunga -->
         <div class="track-card" id="track-ibhunga" data-track="ibhunga">
           <audio class="card-audio" preload="metadata">
             <source src="iBhunga_yebo_after-after_party_30sec.mp3" type="audio/mpeg">
@@ -1159,39 +1215,24 @@
           <div class="card-player-bar">
             <div class="card-player-bar-fill"></div>
           </div>
-          <div class="card-player-times">
-            <span class="time-current">0:00</span>
-            <span class="time-total">0:30</span>
+          <div class="card-player-times"><span class="time-current">0:00</span><span class="time-total">0:30</span>
           </div>
           <p class="track-card-desc">For the after-after party, when the real ones are still going and the rest went
             home.</p>
-          <div class="track-tags">
-            <span class="track-tag">After-hours</span>
-            <span class="track-tag">Unbothered</span>
-            <span class="track-tag">Turn-up</span>
-            <span class="track-tag">Energy</span>
-          </div>
+          <div class="track-tags"><span class="track-tag">After-hours</span><span
+              class="track-tag">Unbothered</span><span class="track-tag">Turn-up</span><span
+              class="track-tag">Energy</span></div>
           <div class="track-card-buttons">
             <a href="https://open.spotify.com/track/4p0RpsTO2io2yoNELWfMOt?si=5032aa8c65cd4643" target="_blank"
-              rel="noopener" class="btn-track-primary">
-              <iconify-icon icon="solar:play-bold" width="14"></iconify-icon>
-              Play This One
-            </a>
+              rel="noopener" class="btn-track-primary"><iconify-icon icon="solar:play-bold" width="14"></iconify-icon>
+              Play This One</a>
             <a href="https://music.apple.com/us/song/ibhunga-yebo-after-after-party/1886987979" target="_blank"
-              rel="noopener" class="btn-track-secondary">
-              <iconify-icon icon="solar:music-note-2-linear" width="14"></iconify-icon>
-              Apple Music
-            </a>
+              rel="noopener" class="btn-track-secondary"><iconify-icon icon="solar:music-note-2-linear"
+                width="14"></iconify-icon> Apple Music</a>
           </div>
         </div>
 
-        <!-- ── Track 4: Mnandi Pussy [Explicit] ── -->
-        <!-- Anchor: #track-mnandi -->
-        <!-- Ad URL: yoursite.com/#track-mnandi -->
-        <!--
-        FILE MUST BE NAMED EXACTLY: Mnandi_Pussy_30sec.mp3
-        Case-sensitive. No spaces. Underscore only.
-      -->
+        <!-- Track 4: Mnandi Pussy — #track-mnandi -->
         <div class="track-card" id="track-mnandi" data-track="mnandi">
           <audio class="card-audio" preload="metadata">
             <source src="Mnandi_Pussy_30sec.mp3" type="audio/mpeg">
@@ -1208,31 +1249,21 @@
           <div class="card-player-bar">
             <div class="card-player-bar-fill"></div>
           </div>
-          <div class="card-player-times">
-            <span class="time-current">0:00</span>
-            <span class="time-total">0:30</span>
+          <div class="card-player-times"><span class="time-current">0:00</span><span class="time-total">0:30</span>
           </div>
           <p class="track-card-desc">For the listener who wants the most daring, most intimate, high-heat energy on the
             project.</p>
           <p class="track-preview-line">"Soft girl era, he ain't ready."</p>
-          <div class="track-tags">
-            <span class="track-tag">Explicit</span>
-            <span class="track-tag">Soft-life</span>
-            <span class="track-tag">Seductive</span>
-            <span class="track-tag">VIP</span>
-            <span class="track-tag">Dangerous</span>
-          </div>
+          <div class="track-tags"><span class="track-tag">Explicit</span><span class="track-tag">Soft-life</span><span
+              class="track-tag">Seductive</span><span class="track-tag">VIP</span><span
+              class="track-tag">Dangerous</span></div>
           <div class="track-card-buttons">
             <a href="https://open.spotify.com/track/1IMdhb3F7Wb5cxOvcsL526?si=0a2c085640ba4291" target="_blank"
-              rel="noopener" class="btn-track-primary">
-              <iconify-icon icon="solar:lock-keyhole-bold" width="14"></iconify-icon>
-              Unlock This Track
-            </a>
+              rel="noopener" class="btn-track-primary"><iconify-icon icon="solar:lock-keyhole-bold"
+                width="14"></iconify-icon> Unlock This Track</a>
             <a href="https://music.apple.com/us/song/mnandi-p-y/1886987978" target="_blank" rel="noopener"
-              class="btn-track-secondary">
-              <iconify-icon icon="solar:music-note-2-linear" width="14"></iconify-icon>
-              Apple Music
-            </a>
+              class="btn-track-secondary"><iconify-icon icon="solar:music-note-2-linear" width="14"></iconify-icon>
+              Apple Music</a>
           </div>
         </div>
 
@@ -1240,9 +1271,7 @@
     </section>
 
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- POSITIONING                            -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- ═══ POSITIONING ═══ -->
     <section class="section fade-in" id="positioning">
       <p class="section-label">The Statement</p>
       <h2 class="section-title">More than a playlist, this is a statement.</h2>
@@ -1258,67 +1287,43 @@
     </section>
 
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- STREAMING PLATFORMS                    -->
-    <!-- Anchor: #platforms                     -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- ═══ STREAMING PLATFORMS ═══ -->
     <section class="section fade-in" id="platforms">
       <p class="section-label">Stream</p>
       <h2 class="section-title">Choose your platform.</h2>
       <p class="section-body">Run the album your way.</p>
       <div class="platform-buttons">
         <a href="https://open.spotify.com/album/1af2of8VPVs8U66pagywfn?si=V2vPXHWlR4yXBlu8SnuyCg" target="_blank"
-          rel="noopener" class="btn-platform">
-          <iconify-icon icon="mdi:spotify" width="22"></iconify-icon>
-          Listen on Spotify
-        </a>
+          rel="noopener" class="btn-platform"><iconify-icon icon="mdi:spotify" width="22"></iconify-icon> Listen on
+          Spotify</a>
         <a href="https://music.apple.com/us/album/we-dont-do-broke/1886987975" target="_blank" rel="noopener"
-          class="btn-platform">
-          <iconify-icon icon="mdi:apple" width="22"></iconify-icon>
-          Listen on Apple Music
-        </a>
+          class="btn-platform"><iconify-icon icon="mdi:apple" width="22"></iconify-icon> Listen on Apple Music</a>
         <a href="https://youtube.com/playlist?list=OLAK5uy_mX1XDEWA7Wu5t_eX16CArPSx6c8_51sn8" target="_blank"
-          rel="noopener" class="btn-platform">
-          <iconify-icon icon="mdi:youtube" width="22"></iconify-icon>
-          Play on YouTube Music
-        </a>
-        <a href="https://distrokid.com/hyperfollow/mnandipalesa/we-dont-do-broke" class="btn-platform">
-          <iconify-icon icon="solar:link-round-bold" width="22"></iconify-icon>
-          Open HyperFollow
-        </a>
+          rel="noopener" class="btn-platform"><iconify-icon icon="mdi:youtube" width="22"></iconify-icon> Play on
+          YouTube Music</a>
+        <a href="https://distrokid.com/hyperfollow/mnandipalesa/we-dont-do-broke" class="btn-platform"><iconify-icon
+            icon="solar:link-round-bold" width="22"></iconify-icon> Open HyperFollow</a>
       </div>
     </section>
 
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- CAPTURE — WhatsApp + Email             -->
-    <!-- Anchor: #connect                       -->
-    <!-- Ad URL: yoursite.com/#connect          -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- ═══ CAPTURE — WhatsApp + Email ═══ -->
     <section class="section capture-section fade-in" id="connect">
       <p class="section-label">Stay Connected</p>
       <h2 class="section-title">Get the album directly. Get the next drop first.</h2>
       <p class="section-body">Join the inner circle for the album, unreleased snippets, early links, and first access to
         new music.</p>
-
       <div class="capture-options">
-
         <a href="https://wa.me/qr/G26JKQ62DGWWF1" target="_blank" rel="noopener" class="btn-whatsapp" id="cta-whatsapp">
           <iconify-icon icon="mdi:whatsapp" width="22" class="wa-icon"></iconify-icon>
           Get the Album on WhatsApp
         </a>
-
-        <div class="capture-divider">
-          <span>or</span>
-        </div>
-
+        <div class="capture-divider"><span>or</span></div>
         <form class="email-form" id="email-form" name="mnandi-palesa-email-list" method="POST" data-netlify="true"
           netlify-honeypot="bot-field" action="/">
           <input type="hidden" name="form-name" value="mnandi-palesa-email-list">
           <input type="hidden" name="subject" value="Mnandi Palesa Email List">
-          <p style="display:none">
-            <label>Don't fill this out: <input name="bot-field"></label>
-          </p>
+          <p style="display:none"><label>Don't fill this out: <input name="bot-field"></label></p>
           <input type="email" name="email" class="email-input" placeholder="Your email address" required
             autocomplete="email" id="email-input">
           <button type="submit" class="btn-email" id="email-submit-btn">
@@ -1326,25 +1331,18 @@
             Join the Private Email List
           </button>
         </form>
-
       </div>
-
       <p class="capture-note">WhatsApp gets you the album and future drops directly. Email gets you early access and
         exclusive visuals.</p>
-
       <div class="email-success" id="email-success">
-        <div class="email-success-icon">
-          <iconify-icon icon="solar:check-circle-bold" width="32"></iconify-icon>
-        </div>
+        <div class="email-success-icon"><iconify-icon icon="solar:check-circle-bold" width="32"></iconify-icon></div>
         <p class="email-success-text">You're in. Stay close.</p>
         <p class="email-success-sub">Watch your inbox for the first drop.</p>
       </div>
     </section>
 
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- FINAL CTA                             -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- ═══ FINAL CTA + Share ═══ -->
     <section class="final-cta fade-in" id="final-cta">
       <h2 class="final-cta-title">Ready to hear the full world?</h2>
       <p class="final-cta-body">Start with the album, pick your favorite, then run it back properly.</p>
@@ -1353,26 +1351,26 @@
         <iconify-icon icon="solar:play-bold" width="18"></iconify-icon>
         Stream We Don't Do Broke
       </a>
+      <div>
+        <button class="final-share-btn" id="final-share-btn">
+          <iconify-icon icon="solar:share-linear" width="16"></iconify-icon>
+          Share This Album
+        </button>
+      </div>
     </section>
 
 
-    <!-- ═══════════════════════════════════════ -->
-    <!-- FOOTER                                -->
-    <!-- ═══════════════════════════════════════ -->
+    <!-- ═══ FOOTER ═══ -->
     <footer class="footer">
       <div class="footer-socials">
         <a href="https://www.instagram.com/mnandi.palesa?igsh=MTEyYXQ3dG4zN2F5Yg==" class="footer-social-link"
-          aria-label="Instagram" target="_blank" rel="noopener">
-          <iconify-icon icon="mdi:instagram" width="24"></iconify-icon>
-        </a>
+          aria-label="Instagram" target="_blank" rel="noopener"><iconify-icon icon="mdi:instagram"
+            width="24"></iconify-icon></a>
         <a href="https://www.tiktok.com/@mnandi.palesa?_r=1&_t=ZG-95Vxa3oTewS" class="footer-social-link"
-          aria-label="TikTok" target="_blank" rel="noopener">
-          <iconify-icon icon="ic:baseline-tiktok" width="24"></iconify-icon>
-        </a>
+          aria-label="TikTok" target="_blank" rel="noopener"><iconify-icon icon="ic:baseline-tiktok"
+            width="24"></iconify-icon></a>
         <a href="https://m.youtube.com/@Club_Bantu" class="footer-social-link" aria-label="YouTube" target="_blank"
-          rel="noopener">
-          <iconify-icon icon="mdi:youtube" width="26"></iconify-icon>
-        </a>
+          rel="noopener"><iconify-icon icon="mdi:youtube" width="26"></iconify-icon></a>
       </div>
       <p class="footer-artist">Mnandi Palesa</p>
       <p class="footer-copy">&copy; 2025 Club Bantu. All rights reserved.</p>
@@ -1380,51 +1378,79 @@
 
   </div>
 
+  <!-- Toast for clipboard fallback -->
+  <div class="share-toast" id="share-toast">Link copied to clipboard</div>
+
 
   <script>
-    /* ══════════════════════════════════════════
-       Fade-in on scroll
-       ══════════════════════════════════════════ */
+    /* ═══ Fade-in on scroll ═══ */
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          obs.unobserve(entry.target);
-        }
+        if (entry.isIntersecting) { entry.target.classList.add('visible'); obs.unobserve(entry.target); }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-
-    document.querySelectorAll('.fade-in').forEach(function (el) {
-      obs.observe(el);
-    });
+    document.querySelectorAll('.fade-in').forEach(function (el) { obs.observe(el); });
 
 
-    /* ══════════════════════════════════════════
-       Audio Player System
-       Only one track plays at a time.
-       Uses audio.load() before play() to fix
-       the issue where some tracks won't start.
-       ══════════════════════════════════════════ */
-    var currentCard = null;
+    /* ═══ Share System ═══ */
+    var shareData = {
+      title: 'WE DON\'T DO BROKE — Mnandi Palesa',
+      text: 'Luxury talk, late-night energy, no apologies. Listen now.',
+      url: 'https://mnandi-palesa.netlify.app'
+    };
 
-    function formatTime(sec) {
-      return '0:' + String(Math.floor(sec)).padStart(2, '0');
+    var toast = document.getElementById('share-toast');
+    var toastTimer = null;
+
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.classList.add('visible');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(function () { toast.classList.remove('visible'); }, 2500);
     }
+
+    function handleShare() {
+      if (navigator.share) {
+        navigator.share(shareData).catch(function () { });
+      } else if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(shareData.url).then(function () {
+          showToast('Link copied to clipboard');
+        }).catch(function () { fallbackCopy(shareData.url); });
+      } else {
+        fallbackCopy(shareData.url);
+      }
+    }
+
+    function fallbackCopy(text) {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); showToast('Link copied to clipboard'); }
+      catch (e) { showToast('Could not copy link'); }
+      document.body.removeChild(ta);
+    }
+
+    document.getElementById('hero-share-btn').addEventListener('click', handleShare);
+    document.getElementById('final-share-btn').addEventListener('click', handleShare);
+
+
+    /* ═══ Audio Player ═══ */
+    var currentCard = null;
+    function formatTime(sec) { return '0:' + String(Math.floor(sec)).padStart(2, '0'); }
 
     function stopAll() {
       document.querySelectorAll('.track-card').forEach(function (card) {
-        var audio = card.querySelector('.card-audio');
-        var icon = card.querySelector('.card-play-icon');
-        var fill = card.querySelector('.card-player-bar-fill');
-        var timeEl = card.querySelector('.time-current');
-
-        if (audio && !audio.paused) {
-          audio.pause();
-          audio.currentTime = 0;
-        }
-        if (icon) icon.setAttribute('icon', 'solar:play-bold');
-        if (fill) fill.style.width = '0%';
-        if (timeEl) timeEl.textContent = '0:00';
+        var a = card.querySelector('.card-audio');
+        var i = card.querySelector('.card-play-icon');
+        var f = card.querySelector('.card-player-bar-fill');
+        var t = card.querySelector('.time-current');
+        if (a && !a.paused) { a.pause(); a.currentTime = 0; }
+        if (i) i.setAttribute('icon', 'solar:play-bold');
+        if (f) f.style.width = '0%';
+        if (t) t.textContent = '0:00';
         card.classList.remove('now-playing');
       });
       currentCard = null;
@@ -1432,7 +1458,6 @@
 
     document.querySelectorAll('.track-card').forEach(function (card) {
       var audio = card.querySelector('.card-audio');
-      var playBtn = card.querySelector('.card-play-btn');
       var icon = card.querySelector('.card-play-icon');
       var bar = card.querySelector('.card-player-bar');
       var fill = card.querySelector('.card-player-bar-fill');
@@ -1441,124 +1466,53 @@
       var spLink = card.querySelector('.btn-track-primary');
       var apLink = card.querySelector('.btn-track-secondary');
 
-      // Set total time once metadata loads
-      audio.addEventListener('loadedmetadata', function () {
-        if (totalEl) totalEl.textContent = formatTime(audio.duration);
-      });
+      audio.addEventListener('loadedmetadata', function () { if (totalEl) totalEl.textContent = formatTime(audio.duration); });
+      audio.addEventListener('timeupdate', function () { if (audio.duration) { fill.style.width = ((audio.currentTime / audio.duration) * 100) + '%'; timeEl.textContent = formatTime(audio.currentTime); } });
+      audio.addEventListener('ended', function () { icon.setAttribute('icon', 'solar:play-bold'); fill.style.width = '0%'; timeEl.textContent = '0:00'; card.classList.remove('now-playing'); currentCard = null; });
 
-      // Update progress bar while playing
-      audio.addEventListener('timeupdate', function () {
-        if (audio.duration) {
-          fill.style.width = ((audio.currentTime / audio.duration) * 100) + '%';
-          timeEl.textContent = formatTime(audio.currentTime);
-        }
-      });
-
-      // Reset when audio ends
-      audio.addEventListener('ended', function () {
-        icon.setAttribute('icon', 'solar:play-bold');
-        fill.style.width = '0%';
-        timeEl.textContent = '0:00';
-        card.classList.remove('now-playing');
-        currentCard = null;
-      });
-
-      // Play / pause button
-      playBtn.addEventListener('click', function () {
+      card.querySelector('.card-play-btn').addEventListener('click', function () {
         if (currentCard === card) {
-          // This card is playing — pause it
-          audio.pause();
-          icon.setAttribute('icon', 'solar:play-bold');
-          card.classList.remove('now-playing');
-          currentCard = null;
+          audio.pause(); icon.setAttribute('icon', 'solar:play-bold'); card.classList.remove('now-playing'); currentCard = null;
         } else {
-          // Stop everything else first
           stopAll();
-
-          // Force the browser to load the audio file
-          // This fixes the issue where tracks 2-4 won't play
           audio.load();
-
-          // Small delay to let load() start, then play
           setTimeout(function () {
-            audio.play().then(function () {
-              icon.setAttribute('icon', 'solar:pause-bold');
-              card.classList.add('now-playing');
-              currentCard = card;
-            }).catch(function (err) {
-              // If audio still can't play, open Spotify as fallback
-              console.log('Audio play failed:', err);
-              console.log('Attempted file:', audio.querySelector('source').src);
+            audio.play().then(function () { icon.setAttribute('icon', 'solar:pause-bold'); card.classList.add('now-playing'); currentCard = card; }).catch(function (err) {
+              console.log('Audio failed:', err, 'File:', audio.querySelector('source').src);
               if (spLink) window.open(spLink.href, '_blank');
             });
           }, 100);
         }
       });
 
-      // Tap progress bar to seek
-      bar.addEventListener('click', function (e) {
-        if (audio.duration) {
-          var rect = bar.getBoundingClientRect();
-          var pct = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
-          audio.currentTime = pct * audio.duration;
-        }
-      });
-
-      // Stop preview if user clicks Spotify or Apple Music button
-      [spLink, apLink].forEach(function (link) {
-        if (link) {
-          link.addEventListener('click', function () {
-            if (currentCard === card) stopAll();
-          });
-        }
-      });
+      bar.addEventListener('click', function (e) { if (audio.duration) { var r = bar.getBoundingClientRect(); audio.currentTime = Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)) * audio.duration; } });
+      [spLink, apLink].forEach(function (l) { if (l) l.addEventListener('click', function () { if (currentCard === card) stopAll(); }); });
     });
 
 
-    /* ══════════════════════════════════════════
-       Email Form — submits via Netlify Forms
-       Forwards to clubbantu@gmail.com
-  
-       ⚠️ REQUIRED SETUP (do this once):
-       1. Deploy this site on Netlify
-       2. Go to Netlify dashboard → your site → Forms
-       3. Click "Add notification" → "Email notification"
-       4. To: clubbantu@gmail.com
-       5. Subject: Mnandi Palesa Email List
-       6. Save
-  
-       Without step 2-6, emails will be stored in
-       Netlify but NOT forwarded to your inbox.
-       ══════════════════════════════════════════ */
+    /* ═══ Email Form ═══ */
     var emailForm = document.getElementById('email-form');
     var emailSuccess = document.getElementById('email-success');
-
     emailForm.addEventListener('submit', function (e) {
       e.preventDefault();
-      var formData = new FormData(emailForm);
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData).toString()
-      }).then(function () {
-        emailForm.style.display = 'none';
-        emailSuccess.classList.add('active');
+      var fd = new FormData(emailForm);
+      fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(fd).toString() }).then(function () {
+        emailForm.style.display = 'none'; emailSuccess.classList.add('active');
       }).catch(function () {
-        // Show success even if Netlify form isn't active yet
-        // (happens when testing locally, not on Netlify)
-        emailForm.style.display = 'none';
-        emailSuccess.classList.add('active');
+        emailForm.style.display = 'none'; emailSuccess.classList.add('active');
       });
     });
 
 
-    /* ══════════════════════════════════════════
-       CTA tracking placeholders
-       ══════════════════════════════════════════ */
-    document.querySelectorAll('#cta-listen-now, #cta-save-album, #cta-final-stream, #cta-whatsapp').forEach(function (btn) {
+    /* ═══ CTA tracking placeholders ═══ */
+    document.querySelectorAll('#cta-listen-now,#cta-save-album,#cta-final-stream,#cta-whatsapp').forEach(function (btn) {
       btn.addEventListener('click', function () {
-        // fbq('track', 'ViewContent', { content_name: 'WE_DONT_DO_BROKE' });
+        // fbq('track','ViewContent',{ content_name:'WE_DONT_DO_BROKE' });
+      });
+    });
+    document.querySelectorAll('.hero-share-btn,.final-share-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        // fbq('track','Share',{ content_name:'WE_DONT_DO_BROKE' });
       });
     });
   </script>
